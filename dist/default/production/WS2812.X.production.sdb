@@ -1,0 +1,430 @@
+[p LITE_MODE AUTOSTATIC LFSROK EMI_WORD ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip 18F25K80 ]
+[d frameptr 4065 ]
+"8 /opt/microchip/xc8/v1.34/sources/common/aldiv.c
+[v ___aldiv __aldiv `(l  1 e 4 0 ]
+"63 /opt/microchip/xc8/v1.34/sources/common/double.c
+[v ___flpack __flpack `(d  1 e 3 0 ]
+"88 /opt/microchip/xc8/v1.34/sources/common/fladd.c
+[v ___fladd __fladd `(d  1 e 3 0 ]
+"54 /opt/microchip/xc8/v1.34/sources/common/fldiv.c
+[v ___fldiv __fldiv `(d  1 e 3 0 ]
+"62 /opt/microchip/xc8/v1.34/sources/common/flmul.c
+[v ___flmul __flmul `(d  1 e 3 0 ]
+"62 /opt/microchip/xc8/v1.34/sources/common/float.c
+[v ___ftpack __ftpack `(f  1 e 3 0 ]
+"20 /opt/microchip/xc8/v1.34/sources/common/flsub.c
+[v ___flsub __flsub `(d  1 e 3 0 ]
+"86 /opt/microchip/xc8/v1.34/sources/common/ftadd.c
+[v ___ftadd __ftadd `(f  1 e 3 0 ]
+"54 /opt/microchip/xc8/v1.34/sources/common/ftdiv.c
+[v ___ftdiv __ftdiv `(f  1 e 3 0 ]
+"62 /opt/microchip/xc8/v1.34/sources/common/ftmul.c
+[v ___ftmul __ftmul `(f  1 e 3 0 ]
+"20 /opt/microchip/xc8/v1.34/sources/common/ftsub.c
+[v ___ftsub __ftsub `(f  1 e 3 0 ]
+"15 /opt/microchip/xc8/v1.34/sources/common/Umul16.c
+[v ___wmul __wmul `(ui  1 e 2 0 ]
+"15 /opt/microchip/xc8/v1.34/sources/common/Umul32.c
+[v ___lmul __lmul `(ul  1 e 4 0 ]
+"8 /home/stephen/MPLABXProjects/WS2812.X/assemblers.c
+[v _writePinMain writePinMain `(v  1 e 0 0 ]
+"22
+[v _writePin0 writePin0 `(v  1 e 0 0 ]
+"82
+[v _writePin1 writePin1 `(v  1 e 0 0 ]
+"142
+[v _writePin2 writePin2 `(v  1 e 0 0 ]
+"202
+[v _writePin3 writePin3 `(v  1 e 0 0 ]
+"262
+[v _writePin4 writePin4 `(v  1 e 0 0 ]
+"322
+[v _writePin5 writePin5 `(v  1 e 0 0 ]
+"382
+[v _writePin6 writePin6 `(v  1 e 0 0 ]
+"442
+[v _writePin7 writePin7 `(v  1 e 0 0 ]
+"52 /home/stephen/MPLABXProjects/WS2812.X/fft.c
+[v _fix_fft fix_fft `(v  1 e 0 0 ]
+"10 /home/stephen/MPLABXProjects/WS2812.X/main.c
+[v _DelayMs DelayMs `(v  1 e 0 0 ]
+"19
+[v _main main `(v  1 e 0 0 ]
+"169 /home/stephen/MPLABXProjects/WS2812.X/spectrum.c
+[v _writeLED writeLED `(v  1 e 0 0 ]
+"1 /home/stephen/MPLABXProjects/WS2812.X/uart.h
+[v _UART_Init UART_Init `(v  1 e 0 0 ]
+"32
+[v _UART_Data_Ready UART_Data_Ready `(uc  1 e 1 0 ]
+"36
+[v _UART_Read UART_Read `(uc  1 e 1 0 ]
+"50
+[v _UART_Write UART_Write `(v  1 e 0 0 ]
+"14 /home/stephen/MPLABXProjects/WS2812.X/WS2812.c
+[v _WS2812Write WS2812Write `(v  1 e 0 0 ]
+"92
+[v _SetAllRGB SetAllRGB `(v  1 e 0 0 ]
+"32442 /opt/microchip/xc8/v1.34/include/pic18f25k80.h
+[v _PORTA PORTA `VEuc  1 e 1 @3968 ]
+"33013
+[v _LATA LATA `VEuc  1 e 1 @3977 ]
+"33140
+[v _LATB LATB `VEuc  1 e 1 @3978 ]
+[s S371 . 1 `uc 1 LATB0 1 0 :1:0 
+`uc 1 LATB1 1 0 :1:1 
+`uc 1 LATB2 1 0 :1:2 
+`uc 1 LATB3 1 0 :1:3 
+`uc 1 LATB4 1 0 :1:4 
+`uc 1 LATB5 1 0 :1:5 
+`uc 1 LATB6 1 0 :1:6 
+`uc 1 LATB7 1 0 :1:7 
+]
+"33188
+[s S380 . 1 `uc 1 LB0 1 0 :1:0 
+]
+"33188
+[s S382 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 LB1 1 0 :1:1 
+]
+"33188
+[s S385 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 LB2 1 0 :1:2 
+]
+"33188
+[s S388 . 1 `uc 1 . 1 0 :3:0 
+`uc 1 LB3 1 0 :1:3 
+]
+"33188
+[s S391 . 1 `uc 1 . 1 0 :4:0 
+`uc 1 LB4 1 0 :1:4 
+]
+"33188
+[s S394 . 1 `uc 1 . 1 0 :5:0 
+`uc 1 LB5 1 0 :1:5 
+]
+"33188
+[s S397 . 1 `uc 1 . 1 0 :6:0 
+`uc 1 LB6 1 0 :1:6 
+]
+"33188
+[s S400 . 1 `uc 1 . 1 0 :7:0 
+`uc 1 LB7 1 0 :1:7 
+]
+"33188
+[u S403 . 1 `S371 1 . 1 0 `S380 1 . 1 0 `S382 1 . 1 0 `S385 1 . 1 0 `S388 1 . 1 0 `S391 1 . 1 0 `S394 1 . 1 0 `S397 1 . 1 0 `S400 1 . 1 0 ]
+"33188
+"33188
+[v _LATBbits LATBbits `VES403  1 e 1 @3978 ]
+"33272
+[v _LATC LATC `VEuc  1 e 1 @3979 ]
+"33496
+[v _TRISA TRISA `VEuc  1 e 1 @3986 ]
+"33552
+[v _TRISB TRISB `VEuc  1 e 1 @3987 ]
+"33613
+[v _TRISC TRISC `VEuc  1 e 1 @3988 ]
+[s S229 . 1 `uc 1 TUN 1 0 :6:0 
+`uc 1 PLLEN 1 0 :1:6 
+`uc 1 INTSRC 1 0 :1:7 
+]
+"33801
+[s S233 . 1 `uc 1 TUN0 1 0 :1:0 
+`uc 1 TUN1 1 0 :1:1 
+`uc 1 TUN2 1 0 :1:2 
+`uc 1 TUN3 1 0 :1:3 
+`uc 1 TUN4 1 0 :1:4 
+`uc 1 TUN5 1 0 :1:5 
+]
+"33801
+[u S240 . 1 `S229 1 . 1 0 `S233 1 . 1 0 ]
+"33801
+"33801
+[v _OSCTUNEbits OSCTUNEbits `VES240  1 e 1 @3995 ]
+[s S137 . 1 `uc 1 RX9D 1 0 :1:0 
+`uc 1 OERR 1 0 :1:1 
+`uc 1 FERR 1 0 :1:2 
+`uc 1 ADDEN 1 0 :1:3 
+`uc 1 CREN 1 0 :1:4 
+`uc 1 SREN 1 0 :1:5 
+`uc 1 RX9 1 0 :1:6 
+`uc 1 SPEN 1 0 :1:7 
+]
+"35070
+[s S146 . 1 `uc 1 RCD8 1 0 :1:0 
+`uc 1 . 1 0 :2:1 
+`uc 1 ADEN 1 0 :1:3 
+`uc 1 . 1 0 :2:4 
+`uc 1 RC9 1 0 :1:6 
+]
+"35070
+[s S152 . 1 `uc 1 . 1 0 :6:0 
+`uc 1 NOT_RC8 1 0 :1:6 
+]
+"35070
+[s S155 . 1 `uc 1 . 1 0 :6:0 
+`uc 1 nRC8 1 0 :1:6 
+]
+"35070
+[s S158 . 1 `uc 1 . 1 0 :6:0 
+`uc 1 RC8_9 1 0 :1:6 
+]
+"35070
+[s S161 . 1 `uc 1 RX9D1 1 0 :1:0 
+`uc 1 OERR1 1 0 :1:1 
+`uc 1 FERR1 1 0 :1:2 
+`uc 1 ADDEN1 1 0 :1:3 
+`uc 1 CREN1 1 0 :1:4 
+`uc 1 SREN1 1 0 :1:5 
+`uc 1 RX91 1 0 :1:6 
+`uc 1 SPEN1 1 0 :1:7 
+]
+"35070
+[s S170 . 1 `uc 1 . 1 0 :5:0 
+`uc 1 SRENA 1 0 :1:5 
+]
+"35070
+[u S173 . 1 `S137 1 . 1 0 `S146 1 . 1 0 `S152 1 . 1 0 `S155 1 . 1 0 `S158 1 . 1 0 `S161 1 . 1 0 `S170 1 . 1 0 ]
+"35070
+"35070
+[v _RCSTA1bits RCSTA1bits `VES173  1 e 1 @4011 ]
+[s S21 . 1 `uc 1 TX9D 1 0 :1:0 
+`uc 1 TRMT 1 0 :1:1 
+`uc 1 BRGH 1 0 :1:2 
+`uc 1 SENDB 1 0 :1:3 
+`uc 1 SYNC 1 0 :1:4 
+`uc 1 TXEN 1 0 :1:5 
+`uc 1 TX9 1 0 :1:6 
+`uc 1 CSRC 1 0 :1:7 
+]
+"35397
+[s S83 . 1 `uc 1 TXD8 1 0 :1:0 
+`uc 1 . 1 0 :5:1 
+`uc 1 TX8_9 1 0 :1:6 
+]
+"35397
+[s S87 . 1 `uc 1 . 1 0 :6:0 
+`uc 1 NOT_TX8 1 0 :1:6 
+]
+"35397
+[s S90 . 1 `uc 1 . 1 0 :6:0 
+`uc 1 nTX8 1 0 :1:6 
+]
+"35397
+[s S93 . 1 `uc 1 TX9D1 1 0 :1:0 
+`uc 1 TRMT1 1 0 :1:1 
+`uc 1 BRGH1 1 0 :1:2 
+`uc 1 SENDB1 1 0 :1:3 
+`uc 1 SYNC1 1 0 :1:4 
+`uc 1 TXEN1 1 0 :1:5 
+`uc 1 TX91 1 0 :1:6 
+`uc 1 CSRC1 1 0 :1:7 
+]
+"35397
+[u S102 . 1 `S21 1 . 1 0 `S83 1 . 1 0 `S87 1 . 1 0 `S90 1 . 1 0 `S93 1 . 1 0 ]
+"35397
+"35397
+[v _TXSTA1bits TXSTA1bits `VES102  1 e 1 @4012 ]
+"35644
+[v _TXREG TXREG `VEuc  1 e 1 @4013 ]
+"35681
+[v _RCREG RCREG `VEuc  1 e 1 @4014 ]
+"35718
+[v _SPBRG SPBRG `VEuc  1 e 1 @4015 ]
+"36547
+[s S30 . 1 `uc 1 TX9D2 1 0 :1:0 
+`uc 1 TRMT2 1 0 :1:1 
+`uc 1 BRGH2 1 0 :1:2 
+`uc 1 SENDB2 1 0 :1:3 
+`uc 1 SYNC2 1 0 :1:4 
+`uc 1 TXEN2 1 0 :1:5 
+`uc 1 TX92 1 0 :1:6 
+`uc 1 CSRC2 1 0 :1:7 
+]
+"36547
+[s S39 . 1 `uc 1 . 1 0 :6:0 
+`uc 1 TX8_92 1 0 :1:6 
+]
+"36547
+[s S42 . 1 `uc 1 TXD82 1 0 :1:0 
+]
+"36547
+[u S44 . 1 `S21 1 . 1 0 `S30 1 . 1 0 `S39 1 . 1 0 `S42 1 . 1 0 ]
+"36547
+"36547
+[v _TXSTA2bits TXSTA2bits `VES44  1 e 1 @4026 ]
+"37094
+[v _ADCON2 ADCON2 `VEuc  1 e 1 @4032 ]
+"37164
+[v _ADCON1 ADCON1 `VEuc  1 e 1 @4033 ]
+"37273
+[v _ADCON0 ADCON0 `VEuc  1 e 1 @4034 ]
+"37403
+[v _ADRESL ADRESL `VEuc  1 e 1 @4035 ]
+"37422
+[v _ADRESH ADRESH `VEuc  1 e 1 @4036 ]
+[s S255 . 1 `uc 1 SCS 1 0 :2:0 
+`uc 1 HFIOFS 1 0 :1:2 
+`uc 1 OSTS 1 0 :1:3 
+`uc 1 IRCF 1 0 :3:4 
+`uc 1 IDLEN 1 0 :1:7 
+]
+"38599
+[s S261 . 1 `uc 1 SCS0 1 0 :1:0 
+`uc 1 SCS1 1 0 :1:1 
+`uc 1 . 1 0 :2:2 
+`uc 1 IRCF0 1 0 :1:4 
+`uc 1 IRCF1 1 0 :1:5 
+`uc 1 IRCF2 1 0 :1:6 
+]
+"38599
+[u S268 . 1 `S255 1 . 1 0 `S261 1 . 1 0 ]
+"38599
+"38599
+[v _OSCCONbits OSCCONbits `VES268  1 e 1 @4051 ]
+"42303
+"42303
+[v _GODONE GODONE `VEb  1 e 0 @32273 ]
+"42723
+[v _RA1 RA1 `VEb  1 e 0 @31745 ]
+"42725
+[v _RA2 RA2 `VEb  1 e 0 @31746 ]
+"42727
+[v _RA3 RA3 `VEb  1 e 0 @31747 ]
+"42809
+[v _RCIF RCIF `VEb  1 e 0 @31989 ]
+"44855
+[v _TRISC6 TRISC6 `VEb  1 e 0 @31910 ]
+"44857
+[v _TRISC7 TRISC7 `VEb  1 e 0 @31911 ]
+"33 /home/stephen/MPLABXProjects/WS2812.X/fft.h
+[v _Sinewave Sinewave `C[768]s  1 e 1536 0 ]
+"18 /home/stephen/MPLABXProjects/WS2812.X/spectrum.c
+[v _imaginaryNumbers imaginaryNumbers `[64]s  1 e 128 0 ]
+"19
+[v _realNumbers realNumbers `[64]s  1 e 128 0 ]
+"36 /home/stephen/MPLABXProjects/WS2812.X/WS2812.h
+[v _tmpData tmpData `uc  1 e 1 @3072 ]
+"37
+[v _bitCount bitCount `uc  1 e 1 @3073 ]
+"38
+[v _ledCount ledCount `uc  1 e 1 @3074 ]
+"39
+[v _ledData ledData `[240]uc  1 e 240 @3075 ]
+"19 /home/stephen/MPLABXProjects/WS2812.X/main.c
+[v _main main `(v  1 e 0 0 ]
+{
+"158
+} 0
+"8 /home/stephen/MPLABXProjects/WS2812.X/assemblers.c
+[v _writePinMain writePinMain `(v  1 e 0 0 ]
+{
+[v writePinMain@pinChoice pinChoice `i  1 p 2 0 ]
+"20
+} 0
+"442
+[v _writePin7 writePin7 `(v  1 e 0 0 ]
+{
+"500
+} 0
+"382
+[v _writePin6 writePin6 `(v  1 e 0 0 ]
+{
+"440
+} 0
+"322
+[v _writePin5 writePin5 `(v  1 e 0 0 ]
+{
+"380
+} 0
+"262
+[v _writePin4 writePin4 `(v  1 e 0 0 ]
+{
+"320
+} 0
+"202
+[v _writePin3 writePin3 `(v  1 e 0 0 ]
+{
+"260
+} 0
+"142
+[v _writePin2 writePin2 `(v  1 e 0 0 ]
+{
+"200
+} 0
+"82
+[v _writePin1 writePin1 `(v  1 e 0 0 ]
+{
+"140
+} 0
+"22
+[v _writePin0 writePin0 `(v  1 e 0 0 ]
+{
+"80
+} 0
+"14 /home/stephen/MPLABXProjects/WS2812.X/WS2812.c
+[v _WS2812Write WS2812Write `(v  1 e 0 0 ]
+{
+"19
+[v WS2812Write@var var `i  1 a 2 0 ]
+"77
+} 0
+"36 /home/stephen/MPLABXProjects/WS2812.X/uart.h
+[v _UART_Read UART_Read `(uc  1 e 1 0 ]
+{
+"41
+} 0
+"1
+[v _UART_Init UART_Init `(v  1 e 0 0 ]
+{
+"3
+[v UART_Init@x x `ui  1 a 2 26 ]
+"1
+[v UART_Init@baudrate baudrate `Cl  1 p 4 14 ]
+"24
+} 0
+"8 /opt/microchip/xc8/v1.34/sources/common/aldiv.c
+[v ___aldiv __aldiv `(l  1 e 4 0 ]
+{
+"11
+[v ___aldiv@quotient quotient `l  1 a 4 10 ]
+"12
+[v ___aldiv@sign sign `uc  1 a 1 9 ]
+[v ___aldiv@counter counter `uc  1 a 1 8 ]
+"8
+[v ___aldiv@dividend dividend `l  1 p 4 0 ]
+[v ___aldiv@divisor divisor `l  1 p 4 4 ]
+"42
+} 0
+"32 /home/stephen/MPLABXProjects/WS2812.X/uart.h
+[v _UART_Data_Ready UART_Data_Ready `(uc  1 e 1 0 ]
+{
+"35
+} 0
+"92 /home/stephen/MPLABXProjects/WS2812.X/WS2812.c
+[v _SetAllRGB SetAllRGB `(v  1 e 0 0 ]
+{
+[v SetAllRGB@red red `uc  1 a 1 wreg ]
+"96
+[v SetAllRGB@i i `i  1 a 2 3 ]
+"94
+[v SetAllRGB@idx idx `uc  1 a 1 5 ]
+"92
+[v SetAllRGB@red red `uc  1 a 1 wreg ]
+[v SetAllRGB@green green `uc  1 p 1 0 ]
+[v SetAllRGB@blue blue `uc  1 p 1 1 ]
+"94
+[v SetAllRGB@red red `uc  1 a 1 2 ]
+"105
+} 0
+"10 /home/stephen/MPLABXProjects/WS2812.X/main.c
+[v _DelayMs DelayMs `(v  1 e 0 0 ]
+{
+"12
+[v DelayMs@i i `ui  1 a 2 3 ]
+"10
+[v DelayMs@x x `ui  1 p 2 0 ]
+"16
+} 0

@@ -1,0 +1,320 @@
+Disassembly Listing for WS2812
+Generated From:
+D:/PIC Processors/WS2812.X/dist/default/production/WS2812.X.production.elf
+05-Jul-2014 20:26:14
+
+---  D:/PIC Processors/WS2812.X/main.c  -----------------------------------------------------------------
+1:             #include <xc.h>
+2:             #include "config.h"
+3:             
+4:             // 48MHz clock
+5:             #define OSC_48MHZ
+6:             #define _XTAL_FREQ 48000000
+7:             
+8:             #define PIN_LED_LATCH LATBbits.LB5
+9:             #define PIN_LED_TRISTATE TRISBbits.TRISB5
+10:            
+11:            #define PIN_WS2812_LATCH LATBbits.LB0
+12:            #define PIN_WS2812_TRISTATE TRISBbits.TRISB0
+13:            #define NUMBER_OF_LEDS 60*3
+14:            
+15:            void DelayMs(unsigned int x);
+16:            
+17:            unsigned char tmpData @0x0c00;
+18:            unsigned char bitCount @0x0c01;
+19:            unsigned char ledCount @0x0c02;
+20:            unsigned char ledData[180] @0x0c03;
+21:            
+22:            void main()
+23:            {
+24:            
+25:                // Set the clock to 48MHz
+26:                #define OSC_48MHZ
+27:            
+28:                // A-D Configuration : Disable and set all pins as digital I/O
+29:                ANCON0 = 0b11111111;
+1FEB4  0E1F     MOVLW 0x1F
+1FEB6  010F     MOVLB 0xF
+1FEB8  010F     MOVLB 0xF
+1FEBA  6F49     MOVWF 0x49, BANKED
+30:                ANCON1 = 0b00011111;
+31:            
+1FEBC  0E00     MOVLW 0x0
+1FEBE  6E89     MOVWF LATA, ACCESS
+32:                LATA  = 0b00000000; // Set all outputs low
+1FEC0  0E00     MOVLW 0x0
+1FEC2  6E8A     MOVWF LATB, ACCESS
+33:                LATB  = 0b00000000;
+1FEC4  0E00     MOVLW 0x0
+1FEC6  6E8B     MOVWF LATC, ACCESS
+34:                LATC  = 0b00000000;
+35:            
+1FEC8  0E00     MOVLW 0x0
+1FECA  6E92     MOVWF TRISA, ACCESS
+36:                TRISA  = 0b00000000; // Enable all pins as outputs
+1FECC  0E00     MOVLW 0x0
+1FECE  6E93     MOVWF TRISB, ACCESS
+37:                TRISB  = 0b00000000;
+1FED0  0E00     MOVLW 0x0
+1FED2  6E94     MOVWF TRISC, ACCESS
+38:                TRISC  = 0b00000000;
+39:            
+40:                // initial pin state
+1FED4  808A     BSF LATB, 0, ACCESS
+41:                PIN_WS2812_LATCH = 1;
+42:            
+43:                // flash the led to show we've reset
+1FED6  8A8A     BSF LATB, 5, ACCESS
+44:                PIN_LED_LATCH = 1;
+1FED8  0E01     MOVLW 0x1
+1FEDA  6E02     MOVWF 0x2, ACCESS
+1FEDC  0EF4     MOVLW 0xF4
+1FEDE  6E01     MOVWF __pcstackCOMRAM, ACCESS
+1FEE0  EC41     CALL 0x1FE82, 0
+1FEE2  F0FF     NOP
+45:                DelayMs(500);
+1FEE4  9A8A     BCF LATB, 5, ACCESS
+46:                PIN_LED_LATCH = 0;
+47:            
+1FEE6  0E00     MOVLW 0x0
+1FEE8  6E0D     MOVWF 0xD, ACCESS
+1FEEA  0E00     MOVLW 0x0
+1FEEC  6E0C     MOVWF i, ACCESS
+1FEEE  500D     MOVF 0xD, W, ACCESS
+1FEF0  0A80     XORLW 0x80
+1FEF2  0F80     ADDLW 0x80
+1FEF4  0E3C     MOVLW 0x3C
+1FEF6  B4D8     BTFSC STATUS, 2, ACCESS
+1FEF8  5C0C     SUBWF i, W, ACCESS
+1FEFA  B0D8     BTFSC STATUS, 0, ACCESS
+1FEFC  D03A     BRA 0xFF72
+1FF6C  4A0C     INFSNZ i, F, ACCESS
+1FF6E  2A0D     INCF 0xD, F, ACCESS
+1FF70  D7BE     BRA 0xFEEE
+48:                for (int i = 0; i<60; i++)
+49:                {
+1FEFE  90D8     BCF STATUS, 0, ACCESS
+1FF00  340C     RLCF i, W, ACCESS
+1FF02  6E06     MOVWF 0x6, ACCESS
+1FF04  340D     RLCF 0xD, W, ACCESS
+1FF06  6E07     MOVWF 0x7, ACCESS
+1FF08  500C     MOVF i, W, ACCESS
+1FF0A  2406     ADDWF 0x6, W, ACCESS
+1FF0C  6E08     MOVWF x, ACCESS
+1FF0E  500D     MOVF 0xD, W, ACCESS
+1FF10  2007     ADDWFC 0x7, W, ACCESS
+1FF12  6E09     MOVWF 0x9, ACCESS
+50:                    int x = i + i + i;
+51:            
+1FF14  010C     MOVLB 0xC
+1FF16  0E02     MOVLW 0x2
+1FF18  2408     ADDWF x, W, ACCESS
+1FF1A  6ED9     MOVWF FSR2L, ACCESS
+1FF1C  010C     MOVLB 0xC
+1FF1E  0E0C     MOVLW 0xC
+1FF20  2009     ADDWFC 0x9, W, ACCESS
+1FF22  6EDA     MOVWF FSR2H, ACCESS
+1FF24  C00C     MOVFF i, INDF2
+1FF26  FFDF     NOP
+52:                    ledData[x] = i;
+1FF28  0E01     MOVLW 0x1
+1FF2A  2408     ADDWF x, W, ACCESS
+1FF2C  6E06     MOVWF 0x6, ACCESS
+1FF2E  0E00     MOVLW 0x0
+1FF30  2009     ADDWFC 0x9, W, ACCESS
+1FF32  6E07     MOVWF 0x7, ACCESS
+1FF34  010C     MOVLB 0xC
+1FF36  0E02     MOVLW 0x2
+1FF38  2406     ADDWF 0x6, W, ACCESS
+1FF3A  6ED9     MOVWF FSR2L, ACCESS
+1FF3C  010C     MOVLB 0xC
+1FF3E  0E0C     MOVLW 0xC
+1FF40  2007     ADDWFC 0x7, W, ACCESS
+1FF42  6EDA     MOVWF FSR2H, ACCESS
+1FF44  0E00     MOVLW 0x0
+1FF46  6EDF     MOVWF INDF2, ACCESS
+53:                    ledData[x+1] = 0;
+1FF48  0E02     MOVLW 0x2
+1FF4A  2408     ADDWF x, W, ACCESS
+1FF4C  6E06     MOVWF 0x6, ACCESS
+1FF4E  0E00     MOVLW 0x0
+1FF50  2009     ADDWFC 0x9, W, ACCESS
+1FF52  6E07     MOVWF 0x7, ACCESS
+1FF54  010C     MOVLB 0xC
+1FF56  0E02     MOVLW 0x2
+1FF58  2406     ADDWF 0x6, W, ACCESS
+1FF5A  6ED9     MOVWF FSR2L, ACCESS
+1FF5C  010C     MOVLB 0xC
+1FF5E  0E0C     MOVLW 0xC
+1FF60  2007     ADDWFC 0x7, W, ACCESS
+1FF62  6EDA     MOVWF FSR2H, ACCESS
+1FF64  500C     MOVF i, W, ACCESS
+1FF66  0800     SUBLW 0x0
+1FF68  0F3C     ADDLW 0x3C
+1FF6A  6EDF     MOVWF INDF2, ACCESS
+54:                    ledData[x+2] = 60 - i;
+55:            
+56:                };
+57:            
+58:                // RESET : Take pin low for at least 50uS
+59:                // ZERO : Take pin high for 0.2-0.5uS, then low for 0.75-1.05uS
+60:                // ONE : Take pin high for 0.75-1.05uS, then low for 0.2-0.5uS
+61:            
+62:                do {
+63:            
+1FF72  908A     BCF LATB, 0, ACCESS
+64:                    // 50uS reset low
+1FF74  0EC8     MOVLW 0xC8
+1FF76  2EE8     DECFSZ WREG, F, ACCESS
+1FF78  D7FE     BRA 0xFF76
+65:                    PIN_WS2812_LATCH = 0;
+66:                    __delay_us(50);
+1FF7A  0E00     MOVLW 0x0
+1FF7C  6E0B     MOVWF 0xB, ACCESS
+1FF7E  0E00     MOVLW 0x0
+1FF80  6E0A     MOVWF ledNum, ACCESS
+1FF82  500B     MOVF 0xB, W, ACCESS
+1FF84  0A80     XORLW 0x80
+1FF86  0F80     ADDLW 0x80
+1FF88  0EB4     MOVLW 0xB4
+1FF8A  B4D8     BTFSC STATUS, 2, ACCESS
+1FF8C  5C0A     SUBWF ledNum, W, ACCESS
+1FF8E  B0D8     BTFSC STATUS, 0, ACCESS
+1FF90  D029     BRA 0xFFE4
+67:            
+68:            #asm
+1FF92  010C     MOVLB 0xC
+1FF94  0E02     MOVLW 0x2
+1FF96  240A     ADDWF ledNum, W, ACCESS
+1FF98  6ED9     MOVWF FSR2L, ACCESS
+1FF9A  010C     MOVLB 0xC
+1FF9C  0E0C     MOVLW 0xC
+1FF9E  200B     ADDWFC 0xB, W, ACCESS
+1FFA0  6EDA     MOVWF FSR2H, ACCESS
+1FFA2  50DF     MOVF INDF2, W, ACCESS
+1FFA4  010C     MOVLB 0xC
+1FFA6  010C     MOVLB 0xC
+1FFA8  6F00     MOVWF 0x0, BANKED
+69:                        MOVLB   0x0C                    // select memory bank 12, to access the assembler variables
+70:            
+1FFAA  010C     MOVLB 0xC
+71:                        MOVLW   NUMBER_OF_LEDS          // ledCount = NUMBER_OF_LEDS
+1FFAC  0E08     MOVLW 0x8
+72:                        MOVWF   BANKMASK(_ledCount),b
+1FFAE  6F01     MOVWF __pcstackCOMRAM, BANKED
+73:            
+74:            byteLoop:   MOVLW   0x05;                   // tmpData = 0x05 - temporary - should be the LED array
+1FFB0  808A     BSF LATB, 0, ACCESS
+75:                        MOVWF   BANKMASK(_tmpData),b
+1FFB2  AF00     BTFSS 0x0, 7, BANKED
+76:            
+1FFB4  D00B     BRA 0xFFCC
+77:                        MOVLW   0x08;                   // bitCount = 8;
+78:                        MOVWF   BANKMASK(_bitCount),b
+1FFB6  4700     RLNCF 0x0, F, BANKED
+79:            
+1FFB8  F000     NOP
+80:            bitLoop:    BSF     LATB, 0                 // set the output high
+1FFBA  F000     NOP
+81:                        BTFSS   BANKMASK(_tmpData), 7   // test the m.s. bit of tmpData.
+1FFBC  F000     NOP
+82:                        BRA     writeZero
+1FFBE  F000     NOP
+83:            
+1FFC0  F000     NOP
+84:            writeOne:   RLNCF   BANKMASK(_tmpData),b
+1FFC2  F000     NOP
+85:                        NOP
+1FFC4  908A     BCF LATB, 0, ACCESS
+86:                        NOP
+1FFC6  2F01     DECFSZ __pcstackCOMRAM, F, BANKED
+87:                        NOP
+1FFC8  D7F3     BRA 0xFFB0
+88:                        NOP
+1FFCA  D009     BRA 0xFFDE
+89:                        NOP
+90:                        NOP
+1FFCC  908A     BCF LATB, 0, ACCESS
+91:                        BCF     LATB,0
+1FFCE  4700     RLNCF 0x0, F, BANKED
+92:                        DECFSZ  BANKMASK(_bitCount),b
+1FFD0  F000     NOP
+93:                        BRA     bitLoop
+1FFD2  F000     NOP
+94:                        BRA     endByte
+1FFD4  F000     NOP
+95:            
+1FFD6  F000     NOP
+96:            writeZero:  BCF     LATB,0
+1FFD8  F000     NOP
+97:                        RLNCF   BANKMASK(_tmpData),b
+1FFDA  2F01     DECFSZ __pcstackCOMRAM, F, BANKED
+98:                        NOP
+1FFDC  D7E9     BRA 0xFFB0
+99:                        NOP
+100:                       NOP
+1FFDE  4A0A     INFSNZ ledNum, F, ACCESS
+1FFE0  2A0B     INCF 0xB, F, ACCESS
+1FFE2  D7CF     BRA 0xFF82
+101:                       NOP
+102:                       NOP
+103:                       DECFSZ  BANKMASK(_bitCount),b
+104:                       BRA     bitLoop
+105:           
+106:           endByte:    DECFSZ  _ledCount
+107:                       BRA     byteLoop
+108:           
+109:                       BSF     LATB,0
+110:           
+1FFE4  808A     BSF LATB, 0, ACCESS
+111:           #endasm
+1FFE6  0E9C     MOVLW 0x9C
+1FFE8  6E06     MOVWF 0x6, ACCESS
+1FFEA  0ED7     MOVLW 0xD7
+1FFEC  2EE8     DECFSZ WREG, F, ACCESS
+1FFEE  D7FE     BRA 0xFFEC
+1FFF0  2E06     DECFSZ 0x6, F, ACCESS
+1FFF2  D7FC     BRA 0xFFEC
+1FFF4  F000     NOP
+112:           
+113:                   __delay_ms(10);
+114:               } while (1);
+115:           }
+116:           
+117:           
+118:           
+119:           void DelayMs(unsigned int x)
+1FE82  0E00     MOVLW 0x0
+1FE84  6E05     MOVWF 0x5, ACCESS
+1FE86  0E00     MOVLW 0x0
+1FE88  6E04     MOVWF i, ACCESS
+1FE8A  D00A     BRA 0xFEA0
+1FE9C  4A04     INFSNZ i, F, ACCESS
+1FE9E  2A05     INCF 0x5, F, ACCESS
+1FEA0  5001     MOVF __pcstackCOMRAM, W, ACCESS
+1FEA2  5C04     SUBWF i, W, ACCESS
+1FEA4  5002     MOVF 0x2, W, ACCESS
+1FEA6  5805     SUBWFB 0x5, W, ACCESS
+1FEA8  B0D8     BTFSC STATUS, 0, ACCESS
+1FEAC  D7EF     BRA 0xFE8C
+120:           {
+121:               for (unsigned int i = 0; i<x ; i++)
+1FE8C  0E10     MOVLW 0x10
+1FE8E  6E03     MOVWF 0x3, ACCESS
+1FE90  0E94     MOVLW 0x94
+1FE92  2EE8     DECFSZ WREG, F, ACCESS
+1FE94  D7FE     BRA 0xFE92
+1FE96  2E03     DECFSZ 0x3, F, ACCESS
+1FE98  D7FC     BRA 0xFE92
+1FE9A  D000     BRA 0xFE9C
+122:               {
+123:                   __delay_ms(1);
+1FEAA  0012     RETURN 0
+1FEAE  010F     MOVLB 0xF
+1FEB0  010F     MOVLB 0xF
+1FEB2  6948     SETF 0x48, BANKED
+124:               }
+125:           }
+126:           
+127:           
+128:           
