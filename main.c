@@ -55,6 +55,7 @@ void main()
     
     DelayMs(2000);
    
+    char receiveArray[255];
     
     //This is for UART. Due to this, your other do while loop won't run.
     //Wait...you ARE using your A port as a UART right?
@@ -62,7 +63,15 @@ void main()
         if(UART_Data_Ready())
         {
             //Read
-            PORTA = UART_Read();
+            //PORTA = UART_Read();
+            UART_Read_Text(receiveArray, 255);
+            
+            //Set the LED to whatever the chip receives from UART
+            //However, you do not know which position in receiveArray gives you the 
+            //LED values. This will require research once you get the module by mail.
+            //For now, just plan on using pin 0 for this
+            //SetAllRGB(receiveArray[X1],receiveArray[X2],receiveArray[X3]);
+            //writePinMain(0);
         }
         DelayMs(100);
     }while(1);
