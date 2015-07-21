@@ -62,7 +62,7 @@ void main()
         if(UART_Data_Ready())
         {
             //Read
-            PORTA = UART_Read();
+            PORTC = UART_Read();
         }
         DelayMs(100);
     }while(1);
