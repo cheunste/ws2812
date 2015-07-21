@@ -63,9 +63,7 @@ void main()
         if(UART_Data_Ready())
         {
             //Read
-<<<<<<< HEAD
             PORTC = UART_Read();
-=======
             //PORTA = UART_Read();
             UART_Read_Text(receiveArray, 255);
             
@@ -75,7 +73,6 @@ void main()
             //For now, just plan on using pin 0 for this
             //SetAllRGB(receiveArray[X1],receiveArray[X2],receiveArray[X3]);
             //writePinMain(0);
->>>>>>> dc99157931466155dea463d58bf4b6528a068bc2
         }
         DelayMs(100);
     }while(1);
