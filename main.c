@@ -33,10 +33,10 @@ void main()
     //ADCON0 = 0b00000011; 	// Start the ADC conversion on AN0
     
     // Vss and Vdd as voltage references
-	ADCON1 = 0b00001110;
+	//ADCON1 = 0b00001110;
 
 	// Configure the ADC acquisition time according to the datasheet
-	ADCON2 = 0b10110110; // Note: output is right justified
+	//ADCON2 = 0b10110110; // Note: output is right justified
     
     //End of FFT
     
