@@ -58,7 +58,7 @@ void main()
     char receiveArray[255];
     
     //This is for UART. Due to this, your other do while loop won't run.
-    //Wait...you ARE using your A port as a UART right?
+    //Wait...you ARE using your C port as a UART right?
     do{
         if(UART_Data_Ready())
         {
@@ -73,10 +73,14 @@ void main()
             //For now, just plan on using pin 0 for this
             //SetAllRGB(receiveArray[X1],receiveArray[X2],receiveArray[X3]);
             //writePinMain(0);
+            
+            //Wait. Couldn't you just echo this back? That would make more sense.
+            UART_Write_Text("Test. Test.");
         }
         DelayMs(100);
     }while(1);
   
+    //Code below is original code used to generate lights
     do {
                
         // All red
