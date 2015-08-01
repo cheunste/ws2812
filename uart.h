@@ -16,8 +16,12 @@ void UART_Init(const long int baudrate)
         TXSTA1bits.SYNC = 0;
         RCSTA1bits.SPEN=1;
         //SPEN = 1;
+        
+        //Set C7 (RX) as input
         TRISC7 = 1;
-        TRISC6 = 1;
+        //SEt C6 (TX) as output
+        TRISC6 = 0;
+        
         RCSTA1bits.CREN = 1;
         TXSTA2bits.TXEN = 1;
 	  //return 1;
