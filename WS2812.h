@@ -27,8 +27,10 @@ extern "C" {
 #define PIN_WS2812_TRISTATE TRISBbits.TRISB0
 
 // number of leds (60 x 3 for green, blue, red)
-#define NUMBER_OF_LEDS 80
-#define LED_ARRAY_SIZE 80*3
+//#define NUMBER_OF_LEDS 80
+//#define LED_ARRAY_SIZE 80*3
+#define NUMBER_OF_LEDS 4
+#define LED_ARRAY_SIZE 4*3
 
 
 // variables. These are at a fixed address to make it easier for the assembly

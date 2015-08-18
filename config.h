@@ -14,8 +14,8 @@ extern "C" {
 #endif
 
 // 48MHz clock
-#define OSC_48MHZ
-#define _XTAL_FREQ 48000000
+    //UART won't work with 48MHz
+#define _XTAL_FREQ 16000000
     
 #define TESTPIN_W4			RA1
 #define TESTPIN_W5			RA2
@@ -35,8 +35,7 @@ extern "C" {
 //#pragma config CFGPLLEN = ON
 //#pragma config PLLDIV = 2
 //#pragma config PLLSEL = PLL96
-    #pragma config PLLCFG =1
-
+ 
 #ifdef	__cplusplus
 }
 #endif

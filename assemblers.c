@@ -16,7 +16,7 @@ void writePinMain(int pinChoice){
         case 6: writePin6();break;
         case 7: writePin7();break;
         default:writePin0();break;
-    }    
+    } 
 }
 
 void writePin0(void)

@@ -3,7 +3,9 @@
 #include "WS2812.h"
 #include "pic18f25k80.h"
 #include "assemblers.h"
-#include "spectrum.h"
+#include "stdio.h"
+#include "stdlib.h"
+//#include "spectrum.h"
 #include "uart.h"
 // simple delay routine.
 // Pauses for approximately the supplied number of milliseconds
@@ -15,18 +17,35 @@ void DelayMs(unsigned int x)
     }
 }
 
+int customAtoi(char *str)
+{
+    int res = 0; // Initialize result
+ 
+    // Iterate through all characters of input string and update result
+    //for (int i = 0; str[i] != '\0'; ++i)
+    for (int i = 0; i<=2; i++)
+        res = res*10 + str[i] - '0';
+ 
+    // return result.
+    return res;
+}
+
 // The main entry point. The program starts executing here.
 void main()
 {
-    OSCTUNEbits.PLLEN=1;
-    OSCCONbits.IRCF = 0b111;
-    
 
-    UART_Init(9600);
+    OSCTUNEbits.PLLEN=1;
+    //Internal Oscillator frequency select bits
+    //111 = HF-INTOSC output frequency is used (16 MHz)
+    //110 = HF-INTOSC/2 output frequency is used (8 MHz, default)
+    OSCCONbits.IRCF = 0b111;
+//      OSCTUNEbits.PLLEN=0;
+//      OSCCONbits.IRCF = 0b110;  
+
 //    // A-D Configuration : Disable and set all pins as digital I/O
 //    ANCON0 = 0b11111111;
 //    ANCON1 = 0b00011111;
-    
+
     //For FFT
     
     //Add this in the while loop and only use if it is in spectrum mode
@@ -47,128 +66,57 @@ void main()
     TRISA  = 0b00000000; // Enable all pins as outputs
     TRISB  = 0b00000000;
     TRISC  = 0b00000000;
+    char receiveArray[9];
+    char redArray[3];
+    char greenArray[3];
+    char blueArray[3];
     
+    int  red=0;
+    int  green=0;
+    int  blue=0;
+    char *end;
     //Clear the LEDs on program startup
-    SetAllRGB(0,0,0);
-    WS2812Write();
-    writePinMain(0);
-    
-    DelayMs(2000);
+//    SetAllRGB(0,0,0);
+//    //WS2812Write();
+//    writePinMain(0);
+////    
+//    DelayMs(2000);
    
-    char receiveArray[255];
-    
+    UART_Init(9600);
+
+//    OSCTUNEbits.PLLEN=1;
+//    //Sets FOSC to run at 8MHz
+//    OSCCONbits.IRCF = 0b110;
     //This is for UART. Due to this, your other do while loop won't run.
     //Wait...you ARE using your C port as a UART right?
     do{
-        if(UART_Data_Ready())
-        {
-            //Read
-            PORTC = UART_Read();
-            //PORTA = UART_Read();
-            UART_Read_Text(receiveArray, 255);
+        if(RCIF){
+        //PORTB = UART_Read();
             
-            //Set the LED to whatever the chip receives from UART
-            //However, you do not know which position in receiveArray gives you the 
-            //LED values. This will require research once you get the module by mail.
-            //For now, just plan on using pin 0 for this
-            //SetAllRGB(receiveArray[X1],receiveArray[X2],receiveArray[X3]);
-            //writePinMain(0);
-            
-            //Wait. Couldn't you just echo this back? That would make more sense.
-            UART_Write_Text("Test. Test.");
-        }
-        DelayMs(100);
+          int i=0;
+          for(i=0;i<=8;i++){
+                while(!RCIF);
+//                receiveArray[i]=RCREG;
+                if(i>=0 && i<=2){
+                    redArray[i]=RCREG;
+                }
+                
+                if(i>=3 && i<=5){
+                    greenArray[i-3]=RCREG;
+                }
+
+                if (i>=6 && i<=8){
+                    blueArray[i-6]=RCREG;
+                }
+          }
+            green=customAtoi(greenArray);
+            blue=customAtoi(blueArray);
+            red=customAtoi(redArray);
+            SetAllRGB(0,0,0);
+            SetAllRGB(red,green,blue);
+            writePinMain(0);
+            DelayMs(100);    
+
+      }
     }while(1);
-  
-    //Code below is original code used to generate lights
-    do {
-               
-        // All red
-//        SetAllRGB(255,0,0);
-//        WS2812Write();
-//        DelayMs(2000);
-
-        // All yellow
-//        SetAllRGB(128,128,0);
-//        WS2812Write();
-//        DelayMs(2000);
-
-        // All purple
-        SetAllRGB(100,0,100);
-        writePinMain(0);
-        
-        DelayMs(5000);
-        //All oragne
-        SetAllRGB(255,128,0);
-        writePinMain(1);
-        DelayMs(5000);
-        
-        //All red
-        SetAllRGB(255,0,0);
-        writePinMain(2);
-        DelayMs(5000);
-        
-        //all blue
-        SetAllRGB(0,0,255);
-        writePinMain(3);
-        DelayMs(5000);
-        
-        //All Aqua
-        SetAllRGB(0,200,200);
-        writePinMain(4);
-        DelayMs(5000);
-        
-        //writePin0();
-//        WS2812Write();
-        
-        //DelayMs(2000);
-
-        // All blue
-//        SetAllRGB(0,0,255);
-//        WS2812Write();
-//        DelayMs(2000);
-
-        // All white
-        //SetAllRGB(85,85,85);
-//        SetAllRGB(85,85,100);
-//        WS2812Write();
-//        DelayMs(2000);
-//
-//        // All black
-//        SetAllRGB(0,0,0);
-//        WS2812Write();
-//        DelayMs(2000);
-
-//        // cycle through all colours.
-//        // note the use of an int to avoid overflow problems in the
-//        // for loop when we reach 255.
-//        for (unsigned int repeat = 0; repeat < 4; repeat++)
-//        {
-//            for (unsigned int color = 0; color <= 255; color++)
-//            {
-//                SetAllColor(color);
-//                WS2812Write();
-//                DelayMs(20);
-//            }
-//        }
-//
-//        // moving rainbow
-//        for (unsigned char repeat = 0; repeat < 6; repeat++)
-//        {
-//            for (unsigned int startColor = 0; startColor <= 255; startColor++)
-//            {
-//                unsigned char color = startColor;
-//                for (unsigned char led = 0; led < 60; led++)
-//                {
-//                    SetColor(led, color);
-//                    color += 4;
-//                }
-//                WS2812Write();
-//                DelayMs(10);
-//            }
-//        }
-
-    } while (1);
 }
-
-

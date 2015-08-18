@@ -1,32 +1,30 @@
 //Needs testing
 //This uses RC6 and RC7 as TX and RX respectively.
-void UART_Init(const long int baudrate)
+char UART_Init(const long int baudrate)
 {
-	unsigned int x;
-	x = (_XTAL_FREQ - baudrate*64)/(baudrate*64);
-	if(x>255)
+	if(OSCTUNEbits.PLLEN==1)
 	{
-		x = (_XTAL_FREQ - baudrate*16)/(baudrate*16);
-        TXSTA2bits.BRGH=1;
-		//BRGH = 1;
-	}
-	if(x<256)
-	{
-        SPBRG = x;
+        //Look at page 339
+        SPBRG = 103;
+        
         TXSTA1bits.SYNC = 0;
         RCSTA1bits.SPEN=1;
+        TXSTA1bits.BRGH=0;
+        
         //SPEN = 1;
         
         //Set C7 (RX) as input
-        TRISC7 = 1;
+        TRISCbits.TRISC7=0;
+        //TRISC7 = 1;
         //SEt C6 (TX) as output
-        TRISC6 = 0;
+        TRISCbits.TRISC6=0;
+        //TRISC6 = 1;
         
         RCSTA1bits.CREN = 1;
-        TXSTA2bits.TXEN = 1;
-	  //return 1;
+        TXSTA1bits.TXEN = 1;
+	  return 1;
 	}
-	//return 0;
+	return 0;
 }
 
 char UART_TX_Empty()
@@ -37,7 +35,7 @@ char UART_TX_Empty()
 
 char UART_Data_Ready()
 {
-   return RCIF;
+     return RCIF;
 }
 char UART_Read()
 {
