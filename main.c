@@ -34,17 +34,15 @@ int customAtoi(char *str)
 void main()
 {
 
-    OSCTUNEbits.PLLEN=1;
     //Internal Oscillator frequency select bits
     //111 = HF-INTOSC output frequency is used (16 MHz)
     //110 = HF-INTOSC/2 output frequency is used (8 MHz, default)
     OSCCONbits.IRCF = 0b111;
-//      OSCTUNEbits.PLLEN=0;
-//      OSCCONbits.IRCF = 0b110;  
+    OSCTUNEbits.PLLEN=1;
 
 //    // A-D Configuration : Disable and set all pins as digital I/O
-//    ANCON0 = 0b11111111;
-//    ANCON1 = 0b00011111;
+    ANCON0 = 0b11111111;
+    ANCON1 = 0b00011111;
 
     //For FFT
     
