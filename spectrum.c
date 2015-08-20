@@ -188,7 +188,20 @@ void writeLED(short inputData[]){
          * edit the led array to handle this stuff.
          *  For simplicity, lets just make it green
          * 
+         * 5) You need to do some math on this. 
+         * If every bucket can contain a frequency of a certain range
+         * You need to see how far is that from the maximum value of that bucket
+         * for ex
          * 
+         * if you have freq x and max freq for the bucket is 3000
+         * 
+         * you need 
+         * ratio=(x-lowBucketFreq)/(highBucketFreq-lowBucketFreq)*100
+         * to get a ratio, and then light up how many LED
+         * on that ratio using floor(ratio * ledOnStrip); then light it up with green
+         * or something while leaving all the others blank. You need a for loop for this
+         * 
+         * 6) Use bucket 5 to 28. Assuming you have enough I/Os
          */ 
 	}
 }

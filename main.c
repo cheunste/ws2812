@@ -5,10 +5,11 @@
 #include "assemblers.h"
 #include "stdio.h"
 #include "stdlib.h"
-//#include "spectrum.h"
+#include "spectrum.h"
 #include "uart.h"
 // simple delay routine.
 // Pauses for approximately the supplied number of milliseconds
+
 void DelayMs(unsigned int x)
 {
     for (unsigned int i = 0; i<x ; i++)
@@ -47,7 +48,7 @@ void main()
     //For FFT
     
     //Add this in the while loop and only use if it is in spectrum mode
-    //ADCON0 = 0b00000011; 	// Start the ADC conversion on AN0
+    ADCON0 = 0b00000011; 	// Start the ADC conversion on AN0
     
     // Vss and Vdd as voltage references
 	//ADCON1 = 0b00001110;
@@ -73,20 +74,11 @@ void main()
     int  green=0;
     int  blue=0;
     char *end;
-    //Clear the LEDs on program startup
-//    SetAllRGB(0,0,0);
-//    //WS2812Write();
-//    writePinMain(0);
-////    
-//    DelayMs(2000);
-   
+
+    //Shouldn't really be used as the chrismas lights uses polling
     UART_Init(9600);
 
-//    OSCTUNEbits.PLLEN=1;
-//    //Sets FOSC to run at 8MHz
-//    OSCCONbits.IRCF = 0b110;
-    //This is for UART. Due to this, your other do while loop won't run.
-    //Wait...you ARE using your C port as a UART right?
+//infinite loop to wait for a UART command
     do{
         if(RCIF){
         //PORTB = UART_Read();
