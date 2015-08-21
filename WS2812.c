@@ -5,7 +5,7 @@
  * Created July 2014
  */
 #include <xc.h>
-#include "pic18f25k80.h"
+#include "pic18f46k80.h"
 #include "config.h"
 #include "WS2812.h"
 

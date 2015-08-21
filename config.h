@@ -7,7 +7,7 @@
 
 #ifndef CONFIG_H
 #define	CONFIG_H
-#include "pic18f25k80.h"
+#include "pic18f46k80.h"
 
 #ifdef	__cplusplus
 extern "C" {

@@ -1,7 +1,7 @@
 #include <xc.h>
 #include "config.h"
 #include "WS2812.h"
-#include "pic18f25k80.h"
+#include "pic18f46k80.h"
 #include "assemblers.h"
 #include "stdio.h"
 #include "stdlib.h"
@@ -80,33 +80,34 @@ void main()
 
 //infinite loop to wait for a UART command
     do{
-        if(RCIF){
-        //PORTB = UART_Read();
-            
-          int i=0;
-          for(i=0;i<=8;i++){
-                while(!RCIF);
-//                receiveArray[i]=RCREG;
-                if(i>=0 && i<=2){
-                    redArray[i]=RCREG;
-                }
-                
-                if(i>=3 && i<=5){
-                    greenArray[i-3]=RCREG;
-                }
-
-                if (i>=6 && i<=8){
-                    blueArray[i-6]=RCREG;
-                }
-          }
-            green=customAtoi(greenArray);
-            blue=customAtoi(blueArray);
-            red=customAtoi(redArray);
-            SetAllRGB(0,0,0);
-            SetAllRGB(red,green,blue);
-            writePinMain(0);
-            DelayMs(100);    
-
-      }
+        spectrum();
+//        if(RCIF){
+//        //PORTB = UART_Read();
+//            
+//          int i=0;
+//          for(i=0;i<=8;i++){
+//                while(!RCIF);
+////                receiveArray[i]=RCREG;
+//                if(i>=0 && i<=2){
+//                    redArray[i]=RCREG;
+//                }
+//                
+//                if(i>=3 && i<=5){
+//                    greenArray[i-3]=RCREG;
+//                }
+//
+//                if (i>=6 && i<=8){
+//                    blueArray[i-6]=RCREG;
+//                }
+//          }
+//            green=customAtoi(greenArray);
+//            blue=customAtoi(blueArray);
+//            red=customAtoi(redArray);
+//            SetAllRGB(0,0,0);
+//            SetAllRGB(red,green,blue);
+//            writePinMain(0);
+//            DelayMs(100);    
+//
+//      }
     }while(1);
 }
