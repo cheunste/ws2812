@@ -18,7 +18,45 @@
 short imaginaryNumbers[64];
 short realNumbers[64];
 
+//Base 1
+#define base1StripLength 13
+//Base 2
+#define base2StripLength 13
+//Base 3
+#define base3StripLength 10
+//Base 4
+#define base4StripLength 8
+//Base 5
+#define base5StripLength 5
+//Base 6
+#define base6StripLength 4
 
+//The low and high ends of the frequency buckets
+
+		//  6 : 1875 - 2187.5
+		//  7 : 2187.5 - 2500
+		//  8 : 2500 - 2812.5
+		//  9 : 2812.5 - 3125
+		// 10 : 3125 - 3437.5
+		// 11 : 3437.5 - 3750
+		// 12 : 3750 - 4062.5
+		// 13 : 4062.5 - 4375
+		// 14 : 4375 - 4687.5
+		// 15 : 4687.5 - 5000
+		// 16 : 5000 - 5312.5
+		// 17 : 5312.5 - 5625
+		// 18 : 5625 - 5937.5
+		// 19 : 5937.5 - 6250
+		// 20 : 6250 - 6562.5
+		// 21 : 6562.5 - 6875
+		// 22 : 6875 - 7187.5
+		// 23 : 7187.5 - 7500
+		// 24 : 7500 - 7812.5
+		// 25 : 7812.5 - 8125
+		// 26 : 8125 - 8437.5
+		// 27 : 8437.5 - 8750
+		// 28 : 8750 - 9062.5
+		// 29 : 9062.5 - 9375
 void spectrum(void){
     
     
