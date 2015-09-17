@@ -186,12 +186,12 @@ void writeLED(short inputData[]){
 	// Scale the input data to 0-63 and perform the dampening of the display
 	for (unsigned char counter = 5; counter < 28; counter++)
 	{
-        
+        //Ratio for deciding the percentage of LEDs that are on
         double ratio = (lowEndFreq[counter-5]-inputData[counter])
                     /(highEndFreq[counter-5]-lowEndFreq[counter-5]);
         
-        
-        
+        //The following if statements decide on how many LEDs each strip
+        //will be using since each strip represents a frequency bucket.
         if(counter >=5 && counter<=12){
             LEDonStrip=13;
         }
@@ -207,7 +207,7 @@ void writeLED(short inputData[]){
         if(counter >=25 && counter <=28){
             LEDonStrip=4;
         }
-        
-        int LEDlightup = (int)floor(ratio*100*LEDonStrip);
+        //Decide how many LEDs to light up
+        int LEDlightup = (int)floor(ratio*LEDonStrip*100);
 	}
 }
