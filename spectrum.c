@@ -13,6 +13,7 @@
 #include "assemblers.h"
 #include "spectrum.h"
 #include "fft.h"
+#include "math.h"
 
 
 short imaginaryNumbers[64];
@@ -181,10 +182,15 @@ void spectrum(void){
 void writeLED(short inputData[]){
     
 	short inputValue;
-	
+	short LEDonStrip=5;
 	// Scale the input data to 0-63 and perform the dampening of the display
-	for (unsigned char counter = 1; counter < 32; counter++)
+	for (unsigned char counter = 5; counter < 28; counter++)
 	{
+        
+        double ratio = (lowEndFreq[counter-5]-inputData[counter])
+                    /(highEndFreq[counter-5]-lowEndFreq[counter-5]);
+        
+        int LEDlightup = (int)floor(ratio*100*LEDonStrip);
         //Fill out later after you decide on the following
         /*1) Do you want to represent each frequency on each strip\
          * or do you want to group some together to reduce I/O?
