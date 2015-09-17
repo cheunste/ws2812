@@ -182,7 +182,7 @@ void spectrum(void){
 void writeLED(short inputData[]){
     
 	short inputValue;
-	short LEDonStrip=5;
+	short LEDonStrip;
 	// Scale the input data to 0-63 and perform the dampening of the display
 	for (unsigned char counter = 5; counter < 28; counter++)
 	{
@@ -190,36 +190,24 @@ void writeLED(short inputData[]){
         double ratio = (lowEndFreq[counter-5]-inputData[counter])
                     /(highEndFreq[counter-5]-lowEndFreq[counter-5]);
         
+        
+        
+        if(counter >=5 && counter<=12){
+            LEDonStrip=13;
+        }
+        if(counter >=13 && counter <=16){
+            LEDonStrip=10;
+        }
+        if(counter >=17 && counter <=20){
+            LEDonStrip=8;
+        }
+        if(counter >=21 && counter <=24){
+            LEDonStrip=5;
+        }
+        if(counter >=25 && counter <=28){
+            LEDonStrip=4;
+        }
+        
         int LEDlightup = (int)floor(ratio*100*LEDonStrip);
-        //Fill out later after you decide on the following
-        /*1) Do you want to represent each frequency on each strip\
-         * or do you want to group some together to reduce I/O?
-         * 
-         * 2) Or do you want to get another chip with more I/O?
-         * 
-         * 3) You probably need to use module (%) since each strip have different
-         * number of LEDs.
-         * 
-         * -side note: if you get more I/Os, you need to add more assembler code
-         * 
-         * 4) and then there's the color. Which means you'll need to manually
-         * edit the led array to handle this stuff.
-         *  For simplicity, lets just make it green
-         * 
-         * 5) You need to do some math on this. 
-         * If every bucket can contain a frequency of a certain range
-         * You need to see how far is that from the maximum value of that bucket
-         * for ex
-         * 
-         * if you have freq x and max freq for the bucket is 3000
-         * 
-         * you need 
-         * ratio=(x-lowBucketFreq)/(highBucketFreq-lowBucketFreq)*100
-         * to get a ratio, and then light up how many LED
-         * on that ratio using floor(ratio * ledOnStrip); then light it up with green
-         * or something while leaving all the others blank. You need a for loop for this
-         * 
-         * 6) Use bucket 5 to 28. Assuming you have enough I/Os
-         */ 
 	}
 }
